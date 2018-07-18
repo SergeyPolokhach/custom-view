@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.cleveroad.circlelayout.CircleLayout
+        android:id="@+id/circleLayout"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@android:color/darker_gray"
+            android:text="Sample1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@android:color/darker_gray"
+            android:text="Sample2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@android:color/darker_gray"
+            android:text="Sample3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@android:color/darker_gray"
+            android:text="Sample4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@android:color/darker_gray"
+            android:text="Sample5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:background="@android:color/darker_gray"
+            android:text="Sampl6" />
+    </com.cleveroad.circlelayout.CircleLayout>
+
+</RelativeLayout>
