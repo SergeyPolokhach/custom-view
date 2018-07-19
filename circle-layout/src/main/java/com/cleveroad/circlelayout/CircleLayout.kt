@@ -18,7 +18,7 @@ class CircleLayout : ViewGroup, View.OnClickListener {
         private const val BAD_ANGLE = -1F
         private const val DEFAULT_VALUE = 0
         private const val HALF_DELIMITER = 2
-        private const val DURATION = 2000L
+        private const val DURATION = 1000L
         private const val START_VALUE = 0F
         private const val END_VALUE = 1F
     }
@@ -35,7 +35,7 @@ class CircleLayout : ViewGroup, View.OnClickListener {
     private val childViewWrapper = ChildViewWrapper()
     private lateinit var viewToCenterAnimator: ValueAnimator
     private lateinit var viewFromCenterAnimator: ValueAnimator
-    private lateinit var viewOnCircke: View
+    private lateinit var viewOnCircle: View
 
     constructor (context: Context) : super(context)
 
@@ -72,9 +72,6 @@ class CircleLayout : ViewGroup, View.OnClickListener {
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         val childCount = childCount
 
-        /*if angle hasn't been set, try to calculate it
-        taking into account how many items declared
-        in xml inside CircularLayout*/
         if (angleInRadians == BAD_ANGLE && inflatedChildCount > DEFAULT_VALUE) {
             setCapacity(childCount)
         }
@@ -163,13 +160,13 @@ class CircleLayout : ViewGroup, View.OnClickListener {
             interpolator = AccelerateInterpolator()
             duration = DURATION
             addUpdateListener({
-                animateChildFromCenter(it.animatedValue as Float)
+                animateChildFromCenter(END_VALUE - it.animatedValue as Float)
                 postInvalidate()
             })
             addListener(
                     object : SimpleAnimatorListener() {
                         override fun onAnimationEnd(animation: Animator?) {
-                            startAnimateToCenter(viewOnCircke)
+                            startAnimateToCenter(viewOnCircle)
                             postInvalidate()
                         }
                     }
@@ -205,12 +202,6 @@ class CircleLayout : ViewGroup, View.OnClickListener {
         child.layout(childRect.left, childRect.top, childRect.right, childRect.bottom)
     }
 
-    override fun onDraw(canvas: Canvas?) {
-
-        canvas?.drawRect(centerLayout, Paint().apply { color = Color.BLUE })
-
-    }
-
     private fun startAnimateToCenter(v: View) {
         childViewWrapper.apply {
 
@@ -232,6 +223,18 @@ class CircleLayout : ViewGroup, View.OnClickListener {
         }
     }
 
+    val paint = Paint().apply { alpha = 100 }
+
+    override fun dispatchDraw(canvas: Canvas) {
+       super.dispatchDraw(canvas)
+
+       canvas.run {
+           drawRect(childRect, paint.apply { color = Color.RED })
+           drawRect(centerLayout, paint.apply { color = Color.GREEN })
+       }
+
+    }
+
     private fun startAnimateFromCenter(v: View) {
         if (childViewWrapper.view?.id == v.id ||
                 viewToCenterAnimator.isRunning ||
@@ -250,33 +253,32 @@ class CircleLayout : ViewGroup, View.OnClickListener {
             bottom = top + v.height
             right = left + v.width
         }
-        viewOnCircke = v
+
+        viewOnCircle = v
         childViewWrapper.view
                 ?.run { viewFromCenterAnimator.start() }
                 ?: run { startAnimateToCenter(v) }
     }
 
     private fun animateChildToCenter(animateValue: Float) {
-        Log.d("test", "animateValueTo: $animateValue")
-
+        Log.d("test", "animateChildToCenter:  $animateValue")
         val delimiter = 1 + animateValue
         val top = (childRect.top + animateValue * centerLayout.top) / delimiter
         val left = (childRect.left + animateValue * centerLayout.left) / delimiter
         val right = (childRect.right + animateValue * centerLayout.right) / delimiter
         val bottom = (childRect.bottom + animateValue * centerLayout.bottom) / delimiter
 
-        viewOnCircke.layout(left.toInt(), top.toInt(), right.toInt(), bottom.toInt())
+        viewOnCircle.layout(left.toInt(), top.toInt(), right.toInt(), bottom.toInt())
     }
 
     private fun animateChildFromCenter(animateValue: Float) {
-        Log.d("test", "animateValueFrom: $animateValue")
-
+        Log.d("test", "animateChildFromCenter:  $animateValue")
         childViewWrapper.run {
             val delimiter = 1 + animateValue
-            val top = (centerLayout.top + animateValue * childLayout.top) / delimiter
-            val left = (centerLayout.left + animateValue * childLayout.left) / delimiter
-            val right = (centerLayout.right + animateValue * childLayout.right) / delimiter
-            val bottom = (centerLayout.bottom + animateValue * childLayout.bottom) / delimiter
+            val top = (childLayout.top + animateValue * centerLayout.top) / delimiter
+            val left = (childLayout.left + animateValue * centerLayout.left) / delimiter
+            val right = (childLayout.right + animateValue * centerLayout.right) / delimiter
+            val bottom = (childLayout.bottom + animateValue * centerLayout.bottom) / delimiter
 
             view?.layout(left.toInt(), top.toInt(), right.toInt(), bottom.toInt())
         }
