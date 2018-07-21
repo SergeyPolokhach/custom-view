@@ -8,7 +8,6 @@ import com.cleveroad.example.custom.view.ui.base.BaseFragment
 class SampleFragment : BaseFragment() {
 
     companion object {
-
         fun newInstance() = SampleFragment().apply {
             arguments = Bundle()
         }
