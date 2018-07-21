@@ -13,13 +13,23 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@android:color/darker_gray"
-            android:text="Sample1" />
+            android:text="Sample First" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_launcher_background"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@android:color/darker_gray"
-            android:text="Sample2" />
+            android:text="Sam2" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_launcher_background"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,11 +37,21 @@
             android:background="@android:color/darker_gray"
             android:text="Sample3" />
 
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_launcher_background"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@android:color/darker_gray"
             android:text="Sample4" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_launcher_background"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,11 +59,21 @@
             android:background="@android:color/darker_gray"
             android:text="Sample5" />
 
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_launcher_background"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@android:color/darker_gray"
             android:text="Sampl6" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_launcher_background"/>
     </com.cleveroad.circlelayout.CircleLayout>
 
 </RelativeLayout>

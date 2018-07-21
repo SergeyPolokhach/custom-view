@@ -6,7 +6,7 @@ import com.cleveroad.example.custom.view.ui.base.BaseActivity
 import com.cleveroad.example.custom.view.ui.screen.sample.SampleFragment
 
 
-class MainActivity : BaseActivity(){
+class MainActivity : BaseActivity() {
 
     override val containerId = R.id.container
     override val layoutId = R.layout.activity_main

@@ -27,8 +27,4 @@ abstract class BaseFragment : Fragment() {
         backPressedCallback = null
         super.onDetach()
     }
-
-    fun backPressed() {
-        backPressedCallback?.backPressed()
-    }
 }
